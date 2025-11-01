@@ -1,0 +1,92 @@
+ cd C:\Users\Сергей\Documents\2025\Аспірантура ЗНТУ 124\ПЗ\django
+---
+
+### 1. Створення віртуального середовища
+
+```bash
+python -m venv myenv
+myenv\Scripts\activate
+```
+
+### 2. Оновлення pip
+
+```bash
+python -m pip install --upgrade pip
+```
+
+### 3. Встановлення Django
+
+```bash
+pip install django
+python -m django --version
+```
+
+### 4. Створення проекту Django
+
+```bash
+django-admin startproject myproject
+cd myproject
+```
+
+### 5. Запуск сервера (попередній)
+
+```bash
+python manage.py runserver
+```
+
+> Було попередження про неприменені міграції.
+
+### 6. Застосування міграцій
+
+```bash
+python manage.py migrate
+```
+
+### 7. Створення суперкористувача (інтерактивно)
+
+> Не вдалося через порожнє поле Username
+
+### 8. Створення суперкористувача однорядково з вашою поштою і паролем
+
+```bash
+python -c "import os; os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings'); import django; django.setup(); from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').delete(); User.objects.create_superuser('admin','zavulon602@gmail.com','1234')"
+```
+
+### 9. Запуск сервера після створення суперкористувача
+
+```bash
+python manage.py runserver
+```
+
+### 10. Створення нового додатку
+
+```bash
+python manage.py startapp shop
+```
+
+### 11. Створення міграцій для додатку
+
+```bash
+python manage.py makemigrations shop
+python manage.py migrate
+```
+
+ В адмінці (http://127.0.0.1:8000/admin/
+admin
+1234
+
+
+
+Щоб **вийти з віртуального середовища `(myenv)`** у Windows, просто виконайте команду:
+
+```bash
+deactivate
+```
+
+Після цього `(myenv)` зникне з початку рядка, і ви повернетеся до звичайного терміналу:
+
+```
+C:\Users\Сергей\Documents\2025\Аспірантура ЗНТУ 124\ПЗ\django\myproject>
+```
+
+Сервер Django після цього вже не буде прив’язаний до віртуального середовища.
